@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cos.springboot.repository.MemRepository">
+
+<!-- 이렇게 하면 MemRepository 파일이랑 연결 -->
+  <select id="findAll" resultType="com.cos.springboot.model.Mem">
+  <!-- id가 함수명 찾아감 -->
+  <!-- 리턴이 여러건이면 list타입으로 안해줘도 알아서 list로 처리해줌 -->
+    select * from mem order by id desc
+  </select>
+  
+   <select id="findById" resultType="com.cos.springboot.model.Mem">
+    select * from mem where id = #{id}
+    <!-- 물음표를 #{}으로 하는데, 변수명을 정확하게 해야함 // 제일 끝에 세미콜론 안해도됨-->
+  </select>
+  
+  <insert id="save">
+  	insert into mem(username, password, email, createTime)
+  	values(#{username}, #{password}, #{email}, now())
+  </insert>
+  
+  <update id="update">
+  	update mem set password = #{password}, email = #{email} where id = #{id}  
+  </update>
+  
+  <delete id="delete">
+  	delete from mem where id = #{id}
+  </delete>
+</mapper>
