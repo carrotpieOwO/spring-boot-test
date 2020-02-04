@@ -29,7 +29,6 @@
 	<br />
 
 	<h2>List</h2>
-
 	<c:forEach var="mem" items="${mems}">
 		<table border="1">
 			<tr>
@@ -73,9 +72,9 @@
 				url : '/mem/api/join',
 				data : JSON.stringify(data),
 				contentType : 'application/Json; charset=utf-8',
-				dataType : 'text'
+				dataType : 'json'
 			}).done(function(result) {
-				if (result === 'ok') {
+				if (result.msg === 'ok') {
 					alert('가입완료');
 					location.href = '/mem';
 				} else {
